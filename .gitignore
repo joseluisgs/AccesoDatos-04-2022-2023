@@ -1,0 +1,6 @@
+*.pptx
+.DS_Store
+upload.sh
+/Practica
+UD04.pdf
+/Extras/Introducción a las bases de datos NoSQL usando MongoDB*.*
