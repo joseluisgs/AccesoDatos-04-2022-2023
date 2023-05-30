@@ -1,0 +1,45 @@
+-- Base de datos de User
+
+-- Crea la base de datos
+CREATE TABLE IF NOT EXISTS User (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    website TEXT NOT NULL
+);
+
+-- Consultas
+
+deleteAll:
+DELETE FROM User;
+
+selectAll:
+SELECT * FROM User;
+
+selectById:
+SELECT * FROM User WHERE id = ?;
+
+selectByUsername:
+SELECT * FROM User WHERE username = ?;
+
+selectByEmail:
+SELECT * FROM User WHERE email = ?;
+
+selectLastInserted:
+-- SELECT * FROM User ORDER BY id DESC LIMIT 1;
+-- SELECT * FROM User WHERE id = (SELECT MAX(id) FROM User);
+SELECT * FROM User WHERE id = last_insert_rowid();
+
+insert:
+INSERT INTO User (id, name, username, email, phone, website) VALUES (?, ?, ?, ?, ?, ?);
+
+insertEntity:
+INSERT INTO User (id, name, username, email, phone, website) VALUES ?;
+
+update:
+UPDATE User SET name = ?, username = ?, email = ?, phone = ?, website = ? WHERE id = ?;
+
+delete:
+DELETE FROM User WHERE id = ?;

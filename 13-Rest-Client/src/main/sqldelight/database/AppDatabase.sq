@@ -1,0 +1,46 @@
+-- src/main/sqldelight/database/Users.sq
+
+CREATE TABLE User (
+  id INTEGER PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  avatar TEXT NOT NULL,
+  email TEXT NOT NULL
+);
+
+INSERT INTO User (first_name, last_name, avatar, email)
+VALUES ('John', 'Doe', 'https://example.com/john_doe.png', 'test@test.com');
+
+removeAllUsers:
+DELETE FROM User;
+
+selectUsers:
+SELECT * FROM User;
+
+selectById:
+SELECT * FROM User WHERE id = ?;
+
+selectLastUser:
+SELECT * FROM User ORDER BY id DESC LIMIT 1;
+
+-- Usa con una transacción
+selectLastInserted:
+SELECT * FROM User WHERE id = last_insert_rowid();
+
+selectUsersByEmail:
+SELECT * FROM User WHERE email = ?;
+
+insert:
+INSERT INTO User (first_name, last_name, avatar, email)
+VALUES(?, ?, ?, ?);
+
+insertUser:
+INSERT INTO User (id, first_name, last_name, avatar, email)
+VALUES(?, ?, ?, ?, ?);
+
+update:
+UPDATE User SET first_name = ?, last_name = ?, avatar = ?, email = ? WHERE id = ?;
+
+delete:
+DELETE FROM User WHERE id = ?;
+
